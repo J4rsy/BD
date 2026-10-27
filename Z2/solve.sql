@@ -1,6 +1,6 @@
 CREATE TABLE Praca (
     id NUMBER(3) PRIMARY KEY CHECK(id >= 1),
-    tytuł VARCHAR2(500),
+    tytul VARCHAR2(500),
     rok NUMBER(4),
     autorzy NUMBER,
     punkty NUMBER
@@ -1163,7 +1163,7 @@ INSERT INTO Autorstwo VALUES (387, 'Toruńczyk');
 INSERT INTO Autorstwo VALUES (388, 'Toruńczyk');
 INSERT INTO Autorstwo VALUES (389, 'Wilczyński');
 
-SELECT UNIQUE Autor.id AS autor_ryzyko1, Aut_f.autor AS współautor
+SELECT UNIQUE Autor.id AS autor_ryzyko1, Aut_f.autor AS wspolautor
 FROM Autor
 LEFT JOIN ( 
     Autorstwo Aut_h 
