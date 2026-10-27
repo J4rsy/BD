@@ -9,8 +9,6 @@ def correct_string(s):
             continue
         if x == '\'':
             res += '\''
-        if x == '"':
-            res += '"'
         res += x
     return res
 

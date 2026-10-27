@@ -105,7 +105,7 @@ INSERT INTO Praca VALUES (104, 'On the number of types in sparse graphs', 2018, 
 INSERT INTO Praca VALUES (105, 'Broadcast with Energy-Exchanging Mobile Agents Distributed on a Tree', 2018, 4, 70);
 INSERT INTO Praca VALUES (106, 'Dfuntest: A Testing Framework for Distributed Applications', 2018, 2, 20);
 INSERT INTO Praca VALUES (107, 'Collective Schedules: Scheduling Meets Computational Social Choice', 2018, 3, 200);
-INSERT INTO Praca VALUES (108, 'Reducing Transducer Equivalence to Register Automata Problems Solved by ""Hilbert Method', 2018, 3, 70);
+INSERT INTO Praca VALUES (108, 'Reducing Transducer Equivalence to Register Automata Problems Solved by "Hilbert Method', 2018, 3, 70);
 INSERT INTO Praca VALUES (109, 'Approval-Based Multi-Winner Rules and Strategic Voting', 2018, 2, 200);
 INSERT INTO Praca VALUES (110, 'Consistent Approval-Based Multi-Winner Rules', 2018, 2, 200);
 INSERT INTO Praca VALUES (111, 'Stable Marriage with Multi-Modal Preferences', 2018, 3, 200);
