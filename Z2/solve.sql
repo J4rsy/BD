@@ -1173,7 +1173,3 @@ JOIN Autorstwo Aut_m ON Autor.ryzyko = 1 AND Autor.id = Aut_m.autor
 JOIN Autorstwo Aut_f ON Aut_m.praca = Aut_f.praca AND Aut_f.autor != Autor.id
 WHERE Praca.id IS NULL
 ORDER BY Autor.id, Aut_f.autor;
-
-DROP TABLE Praca;
-DROP TABLE Autor;
-DROP TABLE Autorstwo;
