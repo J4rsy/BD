@@ -1170,3 +1170,7 @@ LEFT JOIN Praca ON Praca.rok = 2020 AND Aut_m.praca = Praca.id
 JOIN Autorstwo Aut_f ON Aut_m.praca = Aut_f.praca AND Aut_f.autor != Autor.id
 WHERE Praca.id IS NULL
 ORDER BY Autor.id, Aut_f.autor;
+
+DROP TABLE Praca;
+DROP TABLE Autor;
+DROP TABLE Autorstwo;
