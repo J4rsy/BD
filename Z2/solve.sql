@@ -1165,8 +1165,8 @@ INSERT INTO Autorstwo VALUES (389, 'Wilczyński');
 
 SELECT UNIQUE Autor.id AS autor_ryzyko1, Aut_f.autor AS współautor
 FROM Autor 
-JOIN Autorstwo Aut_m ON Autor.ryzyko = 1 AND Autor.id = Autorstwo.autor
+JOIN Autorstwo Aut_m ON Autor.ryzyko = 1 AND Autor.id = Aut_m.autor
 LEFT JOIN Praca ON Praca.rok = 2020 AND Aut_m.praca = Praca.id
-JOIN Autorstwo Aut_f ON Aut_m.praca = Aut_f.praca 
+JOIN Autorstwo Aut_f ON Aut_m.praca = Aut_f.praca AND Aut_f.autor != Autor.id
 WHERE Praca.id IS NULL
 ORDER BY Autor.id, Aut_f.autor;
