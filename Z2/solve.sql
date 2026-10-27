@@ -1169,7 +1169,7 @@ LEFT JOIN (
     Autorstwo Aut_h 
     JOIN Praca ON Praca.rok = 2020 AND Aut_h.praca = Praca.id
 ) ON Aut_h.autor = Autor.id
-JOIN Autorstwo Aut_m AND Autor.id = Aut_m.autor
+JOIN Autorstwo Aut_m ON Autor.id = Aut_m.autor
 JOIN Autorstwo Aut_f ON Aut_m.praca = Aut_f.praca AND Aut_f.autor != Autor.id
 WHERE Autor.ryzyko = 1 AND Praca.id IS NULL
 ORDER BY Autor.id, Aut_f.autor;
