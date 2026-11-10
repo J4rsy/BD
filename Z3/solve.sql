@@ -1176,7 +1176,6 @@ prace_posortowane AS (
     autorstwo aut JOIN
     wartosc_pracy wp ON aut.praca = wp.id
 )
-
 SELECT pracownik, SUM(wartosc) AS wynik_publikacyjny
 FROM prace_posortowane
 WHERE numer <= 4
