@@ -1164,10 +1164,9 @@ INSERT INTO Autorstwo VALUES (388, 'Toruńczyk');
 INSERT INTO Autorstwo VALUES (389, 'Wilczyński');
 
 WITH wartosc_pracy AS (
-    SELECT pr.id AS id, pr.punkty / COUNT(*) AS wartosc FROM
+    SELECT pr.id AS id, pr.punkty / pr.autorzy AS wartosc FROM
     Praca pr JOIN
     Autorstwo aut ON aut.praca = pr.id
-    GROUP BY pr.id, pr.punkty
 ),
 prace_posortowane AS (
     SELECT aut.autor AS pracownik, wp.wartosc AS wartosc,
