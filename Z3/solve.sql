@@ -1174,7 +1174,7 @@ prace_posortowane AS (
     FROM
     wartosc_pracy wp
 )
-SELECT Autor.id AS pracownik, SUM(wartosc) AS wynik_publikacyjny
+SELECT Autor.id AS pracownik, NVL(SUM(wartosc), 0) AS wynik_publikacyjny
 FROM prace_posortowane
 RIGHT JOIN Autor ON Autor.id = prace_posortowane.autor AND prace_posortowane.numer <= 4
 GROUP BY Autor.id;
