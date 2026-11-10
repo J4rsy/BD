@@ -1170,13 +1170,18 @@ WITH wartosc_pracy AS (
     GROUP BY pr.id
 ),
 
+prace_posortowane AS (
+    SELECT aut.autor AS pracownik, wp.wartosc AS wartosc
+    COUNT(*) OVER (PARTITION BY aut.autor ORDER BY wp.wartosc DESC ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS numer
+    FROM
+    autorstwo aut JOIN
+    wartosc_pracy wp ON aut.praca = wp.id
+)
 
-SELECT aut.autor AS Pracownik, SUM(wp.wartosc) AS Wynik_Publikacyjny
-FROM
-autorstwo aut JOIN
-wartosc_pracy wp ON aut.praca = wp.id
-GROUP BY aut.autor
-WHERE (COUNT(*) OVER (PARTITION BY aut.autor ORDER BY wp.wartosc ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)) <= 4;
+SELECT pracownik, SUM(wartosc) AS wynik_publikacyjny
+FROM prace_posortowane
+WHERE numer <= 4
+GROUP BY pracownik;
 
 DROP TABLE Praca;
 DROP TABLE Autorstwo;
