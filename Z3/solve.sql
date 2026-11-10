@@ -1170,7 +1170,7 @@ WITH wartosc_pracy AS (
 ),
 prace_posortowane AS (
     SELECT autor, id, wartosc,
-    ROW_NUMBER() OVER (PARTITION BY aut.autor ORDER BY wp.wartosc DESC) AS numer
+    ROW_NUMBER() OVER (PARTITION BY autor ORDER BY wartosc DESC) AS numer
     FROM
     wartosc_pracy wp
 )
