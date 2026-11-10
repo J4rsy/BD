@@ -1164,19 +1164,19 @@ INSERT INTO Autorstwo VALUES (388, 'Toruńczyk');
 INSERT INTO Autorstwo VALUES (389, 'Wilczyński');
 
 WITH wartosc_pracy AS (
-    SELECT pr.id AS id, pr.punkty / pr.autorzy AS wartosc FROM
+    SELECT aut.autor AS autor, pr.id AS id, pr.punkty / pr.autorzy AS wartosc FROM
     Praca pr JOIN
     Autorstwo aut ON aut.praca = pr.id
 ),
 prace_posortowane AS (
-    SELECT aut.autor AS pracownik, wp.wartosc AS wartosc,
+    SELECT autor, id, wartosc,
     ROW_NUMBER() OVER (PARTITION BY aut.autor ORDER BY wp.wartosc DESC) AS numer
     FROM
-    autorstwo aut JOIN
-    wartosc_pracy wp ON aut.praca = wp.id
+    wartosc_pracy wp
 )
-SELECT pracownik, SUM(wartosc) AS wynik_publikacyjny
+SELECT Autor.id AS pracownik, SUM(wartosc) AS wynik_publikacyjny
 FROM prace_posortowane
+JOIN Autor ON Autor.id = prace_posortowane.autor
 WHERE numer <= 4
 GROUP BY pracownik;
 
