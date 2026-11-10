@@ -1176,8 +1176,7 @@ prace_posortowane AS (
 )
 SELECT Autor.id AS pracownik, SUM(wartosc) AS wynik_publikacyjny
 FROM prace_posortowane
-JOIN Autor ON Autor.id = prace_posortowane.autor
-WHERE numer <= 4
+RIGHT JOIN Autor ON Autor.id = prace_posortowane.autor AND prace_posortowane.numer <= 4
 GROUP BY Autor.id;
 
 DROP TABLE Praca;
