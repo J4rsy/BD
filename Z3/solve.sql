@@ -1163,16 +1163,20 @@ INSERT INTO Autorstwo VALUES (387, 'Toruńczyk');
 INSERT INTO Autorstwo VALUES (388, 'Toruńczyk');
 INSERT INTO Autorstwo VALUES (389, 'Wilczyński');
 
--- WITH wartosc_pracy AS (
---     SELECT pr.id AS id, pr.punkty / COUNT(*) AS wartosc FROM
---     Praca pr JOIN
---     Autorstwo aut ON aut.praca = pr.id
---     GROUP BY pr.id
--- ),
+WITH wartosc_pracy AS (
+    SELECT pr.id AS id, pr.punkty / COUNT(*) AS wartosc FROM
+    Praca pr JOIN
+    Autorstwo aut ON aut.praca = pr.id
+    GROUP BY pr.id
+),
 
 
--- SELECT aut.autor AS Pracownik, SUM(wp.wartosc) AS Wynik_Publikacyjny
--- FROM
--- autorstwo aut JOIN
--- wartosc_pracy wp ON aut.praca = wp.id
--- WHERE COUNT(*) OVER (PARTITION BY aut.autor ORDER BY wp.wartosc ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) <= 4;
+SELECT aut.autor AS Pracownik, SUM(wp.wartosc) AS Wynik_Publikacyjny
+FROM
+autorstwo aut JOIN
+wartosc_pracy wp ON aut.praca = wp.id
+WHERE COUNT(*) OVER (PARTITION BY aut.autor ORDER BY wp.wartosc ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) <= 4;
+
+DROP TABLE Praca;
+DROP TABLE Autorstwo;
+Drop table Autor;
