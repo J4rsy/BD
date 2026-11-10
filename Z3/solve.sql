@@ -1170,7 +1170,7 @@ WITH wartosc_pracy AS (
     GROUP BY pr.id
 ),
 prace_posortowane AS (
-    SELECT aut.autor AS pracownik, wp.wartosc AS wartosc
+    SELECT aut.autor AS pracownik, wp.wartosc AS wartosc,
     COUNT(*) OVER (PARTITION BY aut.autor ORDER BY wp.wartosc DESC ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS numer
     FROM
     autorstwo aut JOIN
