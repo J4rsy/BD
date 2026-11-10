@@ -1175,6 +1175,7 @@ SELECT aut.autor AS Pracownik, SUM(wp.wartosc) AS Wynik_Publikacyjny
 FROM
 autorstwo aut JOIN
 wartosc_pracy wp ON aut.praca = wp.id
+GROUP BY aut.autor
 WHERE COUNT(*) OVER (PARTITION BY aut.autor ORDER BY wp.wartosc ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) <= 4;
 
 DROP TABLE Praca;
