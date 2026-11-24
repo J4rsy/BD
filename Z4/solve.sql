@@ -1183,7 +1183,7 @@ ORDER BY Autor.id;
 WITH wspolautorzy AS (
     SELECT UNIQUE a.Autor AS autor_1, b.Autor AS autor_2
     FROM Autorstwo a
-    JOIN Autorstwo b ON a.praca = b.praca AND a.autor != b.autor;
+    JOIN Autorstwo b ON (a.praca = b.praca AND a.autor != b.autor)
 ),
 WITH erdos(pracownik, dystans) AS (
     SELECT 'Pilipczuk Mi', 0
