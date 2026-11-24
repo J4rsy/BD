@@ -1170,7 +1170,7 @@ WITH wspolautorzy AS (
     JOIN Autorstwo b ON (a.praca = b.praca AND a.autor != b.autor)
 ),
 WITH erdos(pracownik, dystans) AS (
-    SELECT 'Pilipczuk Mi', 0 FROM pracownik
+    SELECT 'Pilipczuk Mi', 0 FROM Autor
         UNION ALL
     SELECT wspolautorzy.autor_2, erdos.dystans 
     FROM erdos JOIN wspolautorzy ON erdos.pracownik = wspolautorzy.autor_1
