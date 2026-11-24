@@ -1163,22 +1163,6 @@ INSERT INTO Autorstwo VALUES (387, 'Toruńczyk');
 INSERT INTO Autorstwo VALUES (388, 'Toruńczyk');
 INSERT INTO Autorstwo VALUES (389, 'Wilczyński');
 
-WITH wartosc_pracy AS (
-    SELECT aut.autor AS autor, pr.id AS id, pr.punkty / pr.autorzy AS wartosc FROM
-    Praca pr JOIN
-    Autorstwo aut ON aut.praca = pr.id
-),
-prace_posortowane AS (
-    SELECT autor, id, wartosc,
-    ROW_NUMBER() OVER (PARTITION BY autor ORDER BY wartosc DESC) AS numer
-    FROM
-    wartosc_pracy wp
-)
-SELECT Autor.id AS pracownik, COALESCE(SUM(wartosc), 0) AS wynik_publikacyjny
-FROM prace_posortowane
-RIGHT JOIN Autor ON Autor.id = prace_posortowane.autor AND prace_posortowane.numer <= 4
-GROUP BY Autor.id
-ORDER BY Autor.id;
 
 WITH wspolautorzy AS (
     SELECT UNIQUE a.Autor AS autor_1, b.Autor AS autor_2
@@ -1186,7 +1170,7 @@ WITH wspolautorzy AS (
     JOIN Autorstwo b ON (a.praca = b.praca AND a.autor != b.autor)
 ),
 WITH erdos(pracownik, dystans) AS (
-    SELECT 'Pilipczuk Mi', 0
+    SELECT 'Pilipczuk Mi', 0 FROM pracownik
         UNION ALL
     SELECT wspolautorzy.autor_2, erdos.dystans 
     FROM erdos JOIN wspolautorzy ON erdos.pracownik = wspolautorzy.autor_1
