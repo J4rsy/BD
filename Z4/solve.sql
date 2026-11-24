@@ -1191,7 +1191,9 @@ WITH erdos(pracownik, dystans) AS (
     SELECT wspolautorzy.autor_2, erdos.dystans 
     FROM erdos JOIN wspolautorzy ON erdos.pracownik = wspolautorzy.autor_1
 ) CYCLE pracownik SET cycle_found TO 1 DEFAULT 0
-SELECT Autor.id AS Pracownik, erdos.dystans AS Liczba_Pilipczuka AS FROM erdos JOIN Autor ON Autor.id = erdos.pracownik;
+SELECT Autor.id AS Pracownik, erdos.dystans AS Liczba_Pilipczuka
+FROM erdos JOIN Autor ON Autor.id = erdos.pracownik
+ORDER BY Autor.id;;
 
 
 
