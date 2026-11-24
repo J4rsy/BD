@@ -1169,15 +1169,16 @@ WITH wspolautorzy AS (
     FROM Autorstwo a
     JOIN Autorstwo b ON (a.praca = b.praca AND a.autor != b.autor)
 ),
-WITH erdos(pracownik, dystans) AS (
-    SELECT 'Pilipczuk Mi', 0 FROM Autor
+erdos(pracownik, dystans) AS (
+    SELECT CAST('Pilipczuk Mi' AS VARCHAR2(50)), 0 FROM DUAL
         UNION ALL
-    SELECT wspolautorzy.autor_2, erdos.dystans 
+    SELECT wspolautorzy.autor_2, erdos.dystans + 1 
     FROM erdos JOIN wspolautorzy ON erdos.pracownik = wspolautorzy.autor_1
 ) CYCLE pracownik SET cycle_found TO 1 DEFAULT 0
-SELECT Autor.id AS Pracownik, erdos.dystans AS Liczba_Pilipczuka
+SELECT Autor.id AS Pracownik, MIN(erdos.dystans) AS Liczba_Pilipczuka
 FROM erdos JOIN Autor ON Autor.id = erdos.pracownik
-ORDER BY Autor.id;;
+GROUP BY Autor.id
+ORDER BY Autor.id;
 
 
 
